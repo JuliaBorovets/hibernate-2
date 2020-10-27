@@ -12,9 +12,15 @@ import java.util.Optional;
 @Service
 public class StateServiceImpl implements StateService {
 
+    private StateRepository stateRepository;
+
+    public StateServiceImpl(StateRepository stateRepository) {
+        this.stateRepository = stateRepository;
+    }
+
     @Override
     public State create(State state) {
-        return null;
+        return stateRepository.save(state);
     }
 
     @Override
@@ -34,7 +40,7 @@ public class StateServiceImpl implements StateService {
 
     @Override
     public List<State> getAll() {
-        return null;
+        return stateRepository.findAll();
     }
 
     @Override
@@ -44,6 +50,6 @@ public class StateServiceImpl implements StateService {
 
     @Override
     public List<State> getSortAsc() {
-        return null;
+        return stateRepository.findByOrderByNameAsc();
     }
 }
