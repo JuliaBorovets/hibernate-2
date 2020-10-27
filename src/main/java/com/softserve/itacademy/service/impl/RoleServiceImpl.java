@@ -4,6 +4,7 @@ import com.softserve.itacademy.model.Role;
 import com.softserve.itacademy.repository.RoleRepository;
 import com.softserve.itacademy.service.RoleService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -14,6 +15,7 @@ import java.util.Optional;
 
 @Service
 public class RoleServiceImpl implements RoleService {
+
 
     @Override
     public Role create(Role role) {
