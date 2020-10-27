@@ -25,6 +25,7 @@ public class RoleRepositoryTests {
         role.setName("NEW");
         role = roleRepository.save(role);
         assertEquals(10, role.getId());
+        roleRepository.delete(role);
     }
 
 }

@@ -19,14 +19,14 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(SpringExtension.class)
 @ActiveProfiles("test")
 @SpringBootTest
-public class ToDoServiceTests {
+public class ToDoServiceIT {
 
     ToDoService toDoService;
 
     UserRepository userRepository;
 
     @Autowired
-    public ToDoServiceTests(ToDoService toDoService, UserRepository userRepository) {
+    public ToDoServiceIT(ToDoService toDoService, UserRepository userRepository) {
         this.toDoService = toDoService;
         this.userRepository = userRepository;
     }
@@ -111,8 +111,6 @@ public class ToDoServiceTests {
         toDoService.delete(11L);
         toDoService.delete(12L);
         toDoService.delete(13L);
-        toDoService.delete(20L);
-        toDoService.delete(22L);
         int expectedSize = 0;
         List<ToDo> toDoList = toDoService.getAll();
         assertEquals(expectedSize, toDoList.size());
