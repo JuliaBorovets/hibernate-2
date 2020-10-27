@@ -7,8 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.beanvalidation.SpringValidatorAdapter;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -41,7 +44,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User update(User user) {
-        return userRepository.save(user);
+        final User updateUser = readById(user.getId());
+
+        Optional.ofNullable(user.getFirstName()).ifPresent(updateUser::setFirstName);
+        Optional.ofNullable(user.getLastName()).ifPresent(updateUser::setLastName);
+        Optional.ofNullable(user.getPassword()).ifPresent(updateUser::setPassword);
+        Optional.ofNullable(user.getEmail()).ifPresent(updateUser::setEmail);
+
+        return userRepository.save(updateUser);
+
     }
 
     @Override

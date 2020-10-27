@@ -1,9 +1,11 @@
 package com.softserve.itacademy;
 
 import com.softserve.itacademy.model.ToDo;
+import com.softserve.itacademy.model.User;
 import com.softserve.itacademy.service.StateService;
 import com.softserve.itacademy.service.TaskService;
 import com.softserve.itacademy.service.ToDoService;
+import com.softserve.itacademy.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -17,6 +19,9 @@ public class ToDoListApplication implements CommandLineRunner {
 
     @Autowired
     TaskService taskService;
+
+    @Autowired
+    UserService userService;
 
 
     public static void main(String[] args) {
