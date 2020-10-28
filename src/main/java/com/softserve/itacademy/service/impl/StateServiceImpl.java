@@ -25,17 +25,21 @@ public class StateServiceImpl implements StateService {
 
     @Override
     public State readById(long id) {
-        return null;
+        return stateRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("State with id " + id + " doesn't exist"));
     }
 
     @Override
     public State update(State state) {
-        return null;
+        final State updatedState = readById(state.getId());
+        Optional.ofNullable(state.getName()).ifPresent(updatedState::setName);
+        Optional.ofNullable(state.getTasks()).ifPresent(updatedState::setTasks);
+        return stateRepository.save(updatedState);
     }
 
     @Override
     public void delete(long id) {
-
+        stateRepository.deleteById(id);
     }
 
     @Override
@@ -45,7 +49,7 @@ public class StateServiceImpl implements StateService {
 
     @Override
     public State getByName(String name) {
-        return null;
+        return stateRepository.findByName(name);
     }
 
     @Override

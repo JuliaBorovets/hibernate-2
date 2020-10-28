@@ -12,6 +12,6 @@ import java.util.List;
 // implements methods for retrieving Tasks by todo_id
 @Repository
 public interface TaskRepository extends JpaRepository<Task, Long> {
-    @Query("select t from Task t join ToDo t2 where t2.id = t.toDo.id")
+    @Query("select t from Task t join ToDo t2 on t2.id = t.toDo.id")
     List<Task> findAllByTodoId(@Param("id") long id);
 }

@@ -17,13 +17,13 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(SpringExtension.class)
 @ActiveProfiles("test")
 @SpringBootTest
-public class StateServiceTests {
+public class StateServiceIT {
 
     StateService stateService;
     TaskService taskService;
 
     @Autowired
-    public StateServiceTests(StateService stateService, TaskService taskService){
+    public StateServiceIT(StateService stateService, TaskService taskService){
         this.stateService = stateService;
         this.taskService = taskService;
     }

@@ -11,4 +11,6 @@ public interface StateRepository extends JpaRepository<State, Long> {
 
     List<State> findByOrderByNameAsc();
 
+    State findByName(String name);
+
 }
