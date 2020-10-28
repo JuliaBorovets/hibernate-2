@@ -5,6 +5,7 @@ import org.hibernate.annotations.Parameter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -29,7 +30,11 @@ public class Role {
     private String name;
 
     @OneToMany(mappedBy = "role")
-    private List<User> users;
+    private List<User> users = new ArrayList<>();
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public long getId() {
         return id;

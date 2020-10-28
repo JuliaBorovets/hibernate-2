@@ -12,38 +12,48 @@ import java.util.Optional;
 @Service
 public class StateServiceImpl implements StateService {
 
+    private StateRepository stateRepository;
+
+    public StateServiceImpl(StateRepository stateRepository) {
+        this.stateRepository = stateRepository;
+    }
+
     @Override
     public State create(State state) {
-        return null;
+        return stateRepository.save(state);
     }
 
     @Override
     public State readById(long id) {
-        return null;
+        return stateRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("State with id " + id + " doesn't exist"));
     }
 
     @Override
     public State update(State state) {
-        return null;
+        final State updatedState = readById(state.getId());
+        Optional.ofNullable(state.getName()).ifPresent(updatedState::setName);
+        Optional.ofNullable(state.getTasks()).ifPresent(updatedState::setTasks);
+        return stateRepository.save(updatedState);
     }
 
     @Override
     public void delete(long id) {
-
+        stateRepository.deleteById(id);
     }
 
     @Override
     public List<State> getAll() {
-        return null;
+        return stateRepository.findAll();
     }
 
     @Override
     public State getByName(String name) {
-        return null;
+        return stateRepository.findByName(name);
     }
 
     @Override
     public List<State> getSortAsc() {
-        return null;
+        return stateRepository.findByOrderByNameAsc();
     }
 }

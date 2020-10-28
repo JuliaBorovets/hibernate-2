@@ -17,13 +17,13 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(SpringExtension.class)
 @ActiveProfiles("test")
 @SpringBootTest
-public class StateServiceTests {
+public class StateServiceIT {
 
     StateService stateService;
     TaskService taskService;
 
     @Autowired
-    public StateServiceTests(StateService stateService, TaskService taskService){
+    public StateServiceIT(StateService stateService, TaskService taskService){
         this.stateService = stateService;
         this.taskService = taskService;
     }
@@ -71,14 +71,7 @@ public class StateServiceTests {
     @Test
     @Transactional
     public void getAllStateTest(){
-        taskService.delete(5L);
-        taskService.delete(6L);
-        taskService.delete(7L);
-        stateService.delete(5l);
-        stateService.delete(6L);
-        stateService.delete(7l);
-        stateService.delete(8L);
-        int expectedSize = 0;
+        int expectedSize = 4;
         List<State> states = stateService.getAll();
         assertEquals(expectedSize, states.size());
     }

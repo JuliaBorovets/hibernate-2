@@ -6,10 +6,11 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-//TODO
-// implements methods for retrieving State by Name
-// and all states sorted by name
 @Repository
 public interface StateRepository extends JpaRepository<State, Long> {
+
+    List<State> findByOrderByNameAsc();
+
+    State findByName(String name);
 
 }

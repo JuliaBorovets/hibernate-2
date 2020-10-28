@@ -24,7 +24,8 @@ public class RoleRepositoryTests {
         Role role = new Role();
         role.setName("NEW");
         role = roleRepository.save(role);
-        assertEquals(10, role.getId());
+        assertEquals(roleRepository.findById(role.getId()).get().getId(), role.getId());
+        roleRepository.delete(role);
     }
 
 }
