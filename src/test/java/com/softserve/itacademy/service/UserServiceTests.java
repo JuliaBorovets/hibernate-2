@@ -84,6 +84,7 @@ class UserServiceTests {
     @Test
     void shouldReturnUpdatedUser() {
         given(userRepository.save(user)).willReturn(user);
+        given(userRepository.findById(anyLong())).willReturn(Optional.of(user));
         final User update = userService.update(user);
         assertNotNull(update);
     }
